@@ -1,4 +1,4 @@
-package yunus1903.CDC;
+package yunus1903.cdc;
 
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -106,11 +106,11 @@ public class Main
  
             JSONObject jsonObject = (JSONObject) obj;
             
-            String array = jsonObject.get("downloads").toString();
+            String downloadArray = jsonObject.get("downloads").toString().replace("{\"total\":", "").replace("\"monthly\":", "").replace("}", "");
             
-            String[] stringArray = array.split(",");
+            String[] stringArray = downloadArray.split(",");
             
-            int downloads = Integer.parseInt(stringArray[0].replace("{\"total\":", ""));
+            int downloads = Integer.parseInt(stringArray[0]); //0 = Total Downloads, 1 = Monthly Downloads
             
             return downloads;
         }
